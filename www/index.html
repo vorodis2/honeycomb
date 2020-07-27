@@ -1,0 +1,85 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>honeycomb</title>
+
+
+
+
+<script src='src/lib/jquery-1.11.3.js'></script>
+<script src='src/libMy/divLib.js'></script>
+<script src='src/lib/three.min.js'></script>
+
+<!--<script src='src/lib/loaders/GLTFLoader.js'></script>-->
+
+
+
+
+
+<style type="text/css">
+	#stats { position: absolute; top:0; left: 200px; }
+</style>
+
+</head>
+<meta name="viewport" content="width=device-width,height=device-height,user-scalable=no user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<body>
+
+<script  type="module">
+
+	import { Honeycomb } from './src/honeycomb/Honeycomb.js';
+	import { MenuHoneycomb} from './src/honeycomb/MenuHoneycomb.js';
+	window.trace = window.console.log.bind(window.console);
+
+
+	var honeycomb=new Honeycomb('resources/font/helvetiker_bold.typeface.json',function(s,p,p1){		
+		if(s=="complit"){
+			let s='{"hScane":{"array":[{"x":398,"y":0,"z":0,"rotation":0,"radius":300,"color":"#4e4e4e","height":10,"array":[{"height":100,"visible":true,"text":"sdfsdf"},{"height":67,"visible":true,"text":"sdfsdfdsf"},{"height":88,"visible":true,"text":"xzxzREDSDS"},{"height":11,"visible":false,"text":""},{"height":60,"visible":false,"text":""},{"height":3.3333333333333335,"visible":true,"text":""},{"height":3.3333333333333335,"visible":true,"text":""}]},{"x":0,"y":0,"z":0,"rotation":0,"radius":81,"color":"#ff7597","height":100,"array":[{"height":3.3333333333333335,"visible":true,"text":""},{"height":23,"visible":true,"text":""},{"height":46,"visible":true,"text":""},{"height":100,"visible":true,"text":""},{"height":3.3333333333333335,"visible":true,"text":""},{"height":3.3333333333333335,"visible":true,"text":""},{"height":3.3333333333333335,"visible":true,"text":""}]}]}}';
+			let o=JSON.parse(s);
+			honeycomb.setObj(o);
+			menu.setObj(o);
+			return
+		}
+		menu.setApi(s,p,p1);
+	});
+	document.body.appendChild(honeycomb.div); //приатачиваем див там 3д и соты
+
+	var menu=new MenuHoneycomb(function(s,p,p1){
+		trace("menu>>",s,p,p1);
+		if(s=="getObj"){
+			let o=honeycomb.getObj();
+			menu.setObj(o)
+			//p(honeycomb.getObj())//берем модель сот
+			return;
+		}
+		if(s=="setObj"){
+			honeycomb.setObj(p);//посылаем модель
+			return;
+		}
+		if(s=="creatHoney"){			
+			let o=honeycomb.setApi(s,p,p1);
+			menu.setObject(o);			
+			return;
+		}
+		honeycomb.setApi(s,p,p1);
+	});
+
+	
+
+
+
+	function animate() {
+		requestAnimationFrame( animate );
+		if(honeycomb)honeycomb.upDate();
+	}
+
+	function sizeWindow () {
+		var w = document.documentElement.clientWidth;
+		var h = document.documentElement.clientHeight;
+		menu.sizeWindow(w,h);
+		honeycomb.sizeWindow(w,h);
+	}
+	window.onresize = sizeWindow;
+	sizeWindow();
+	animate();
+	
+</script>	
+</body></html>
