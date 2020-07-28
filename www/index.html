@@ -8,6 +8,7 @@
 <script src='src/lib/jquery-1.11.3.js'></script>
 <script src='src/libMy/divLib.js'></script>
 <script src='src/lib/three.min.js'></script>
+<script src='src/lib/tween.min.js'></script>
 
 <!--<script src='src/lib/loaders/GLTFLoader.js'></script>-->
 
@@ -32,7 +33,7 @@
 
 	var honeycomb=new Honeycomb('resources/font/helvetiker_bold.typeface.json',function(s,p,p1){		
 		if(s=="complit"){
-			let s='{"hScane":{"array":[{"x":398,"y":0,"z":0,"rotation":0,"radius":300,"color":"#4e4e4e","height":10,"array":[{"height":100,"visible":true,"text":"sdfsdf"},{"height":67,"visible":true,"text":"sdfsdfdsf"},{"height":88,"visible":true,"text":"xzxzREDSDS"},{"height":11,"visible":false,"text":""},{"height":60,"visible":false,"text":""},{"height":3.3333333333333335,"visible":true,"text":""},{"height":3.3333333333333335,"visible":true,"text":""}]},{"x":0,"y":0,"z":0,"rotation":0,"radius":81,"color":"#ff7597","height":100,"array":[{"height":3.3333333333333335,"visible":true,"text":""},{"height":23,"visible":true,"text":""},{"height":46,"visible":true,"text":""},{"height":100,"visible":true,"text":""},{"height":3.3333333333333335,"visible":true,"text":""},{"height":3.3333333333333335,"visible":true,"text":""},{"height":3.3333333333333335,"visible":true,"text":""}]}]}}';
+			let s='{"hScane":{"startVisi":"{|xVerh|:504.915359463085,|yVerh|:-161.2242308902864,|zVerh|:210.92895491262232,|rotationX|:0.8599999999999999,|rotationZ|:-0.24000000000000002,|zume|:592.2612503439516}","array":[{"x":398,"y":0,"z":0,"rotation":0,"radius":300,"color":"#d200a5","height":59,"array":[{"height":100,"visible":true,"text":"sdfsdf","colorText":"#ffffff","fontSize":16},{"height":67,"visible":true,"text":"sdfsdfdsf","colorText":"#ffffff","fontSize":16},{"height":88,"visible":true,"text":"xzxzREDываSDS","colorText":"#ffffff","fontSize":16},{"height":11,"visible":false,"text":"","colorText":"#ffffff","fontSize":16},{"height":60,"visible":false,"text":"","colorText":"#ffffff","fontSize":16},{"height":3.3333333333333335,"visible":true,"text":"","colorText":"#ffffff","fontSize":16},{"height":3.3333333333333335,"visible":true,"text":"","colorText":"#ffffff","fontSize":16}],"text":"3654вапрfghgdfg","colorText":"#ffacac","fontSize":16},{"x":0,"y":0,"z":0,"rotation":0,"radius":81,"color":"#ff7597","height":100,"array":[{"height":3.3333333333333335,"visible":true,"text":"","colorText":"#ffffff","fontSize":16},{"height":23,"visible":true,"text":"","colorText":"#ffffff","fontSize":16},{"height":46,"visible":true,"text":"","colorText":"#ffffff","fontSize":16},{"height":100,"visible":true,"text":"","colorText":"#ffffff","fontSize":16},{"height":3.3333333333333335,"visible":true,"text":"","colorText":"#ffffff","fontSize":16},{"height":3.3333333333333335,"visible":true,"text":"","colorText":"#ffffff","fontSize":16},{"height":3.3333333333333335,"visible":true,"text":"","colorText":"#ffffff","fontSize":16}],"text":"","colorText":"#ffffff","fontSize":16}]}}';
 			let o=JSON.parse(s);
 			honeycomb.setObj(o);
 			menu.setObj(o);
@@ -59,6 +60,14 @@
 			menu.setObject(o);			
 			return;
 		}
+		
+		if(s=="returnVisi3D"){	
+			return honeycomb.visi3D;			
+		}
+		if(s=="returnScane"){	
+			return honeycomb.hScane;			
+		}
+
 		honeycomb.setApi(s,p,p1);
 	});
 

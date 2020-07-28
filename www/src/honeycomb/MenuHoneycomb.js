@@ -43,8 +43,7 @@ export class MenuHoneycomb  {
 			}
 	    } 
 
-	    this.setObj=function(o){
-	    	
+	    this.setObj=function(o){	    	
 	    	let s=JSON.stringify(o);
 	        array[0].textArea.value=s;
             
@@ -82,20 +81,46 @@ export class MStart  {
     	y+=34;
 
     	b = new DButton(this.w.content, 2, y, "get",function(){
-	        self.par.fun("getObj")
-	        /*,function(o){
-	        	let s=JSON.stringify(o);
-	        	textArea.value=s
-	        })*/
-	    })
+	        self.par.fun("getObj");	        
+	    });
 	    b.width=(this.w.width-6)/2;
 
 	    b = new DButton(this.w.content, (this.w.width-6)/2+4, y, "set",function(){
-	        let o=JSON.parse(textArea.value);
+	        let o=JSON.parse(self.textArea.value);
 	        self.par.fun("setObj",o);
 	    })
 	    b.width=(this.w.width-6)/2;
 	    y+=34;
+
+	    var bGetScane = new DButton(this.w.content, (this.w.width-2)-b.height, y, "<",function(){
+	        /*let o=JSON.parse(textArea.value);
+	        self.par.fun("setObj",o);*/
+	        if(this.text=="<"){
+	        	let visi3D=self.par.fun("returnVisi3D");
+	        	let s=JSON.stringify(visi3D.getObj());
+	        	let s1=s.replace(/"/gi,'|');
+
+	        	
+	        	self.object.startVisi=s1;
+	        	self.input.value=self.object.startVisi;
+	        	this.text="x";
+	        	return
+	        }
+	        if(this.text=="x"){
+	        	self.object.startVisi="null";
+	        	self.input.value="null";
+	        	this.text="<";
+	        }
+	    })
+	    bGetScane.width=bGetScane.height;
+
+	    this.input=new DInput(this.w.content, 2, y, "null",function(){
+	        
+	    });
+	    this.input.width=-6+bGetScane.x;    
+
+	    y+=34;
+
 
 	    this.textArea=new DTextArea(this.w.content, 2, y, "null",function(){
 	        
@@ -103,6 +128,25 @@ export class MStart  {
 	    this.textArea.width=this.w.width-4;
 	    this.textArea.height=100;
 	    y+=this.textArea.height+2;
+
+
+	    this.setObject=function(object){	    	
+	    	this.object=self.par.fun("returnScane");
+	    	trace(">>>>",this.object);
+
+	    	self.input.value=self.object.startVisi;
+	    	trace(">>>>>>>>>>>>>>>>>>",self.input.value);
+	    	if(self.input.value == "null"){
+	    		bGetScane.text="<"
+	    	}else{
+	    		bGetScane.text="x"
+	    	}
+
+	    }
+
+
+
+
     	this.w.height=y+34;
     }
 }
@@ -149,7 +193,11 @@ export class MHoney  {
 	        self.object.color=this.value;
 	    });
 	    color.width=this.w.width-4;	   
-    	y+=34;	
+    	y+=34;
+
+
+
+
 
 
     	this.drag=function(){    	
@@ -175,6 +223,30 @@ export class MHoney  {
 	    y+=34;	
 
 
+	    var textArea = new DTextArea(this.w.content, 2, y,"null",function(){
+	        self.object.text=this.value;
+	    })
+    	textArea.width=this.w.width-6;
+    	textArea.height=48;
+    	textArea.timeFun=1;
+    	y+=50;
+
+
+
+    	var color1 = new DColor(this.w.content, 2, y,"#ffffff",function(){
+	        self.object.colorText=this.value;
+	    });
+	    color1.width=this.w.width-4;	   
+    	y+=34;
+
+		var rot3 = new DSliderBig(this.w.content, 2, y,function(){
+	        self.object.fontSize=this.value;
+	    }, "fontSize", 1, 100)
+	    rot3.width=this.w.width-6;
+	    rot3.okrug=1;
+    	y+=50;	
+
+
     	this.object;
 	    this.setObject=function(object){
 	    	this.object=object; 
@@ -186,7 +258,11 @@ export class MHoney  {
 	    	this.ar[0].value=self.object.x;
 	    	this.ar[1].value=self.object.y;
 	    	this.ar[2].value=self.object.z;
-	    	
+
+
+	    	textArea.value=self.object.text;
+	    	color1.value=self.object.colorText;
+	    	rot3.value=self.object.fontSize;
 	    }
 
     	this.w.height=y+34;
@@ -217,18 +293,19 @@ export class MComb  {
 
     	let y=2;
 
-    /*	var rot = new DSliderBig(this.w.content, 2, y,function(){
-	        self.object.rotation=this.value*Math.PI/180
-	    }, "rotation", -180, 180)
-	    rot.width=this.w.width-6;
-	    rot.okrug=1;
-    	y+=50;*/
-    	var check = new DCheckBox(this.w.content, 2, y,"visible",function(){
+		var check = new DCheckBox(this.w.content, 2, y,"visible",function(){
 	        self.object.visible=this.value;
 	    })
-
-
 	    y+=28;
+
+    	var rot = new DSliderBig(this.w.content, 2, y,function(){
+	        self.object.alpha=this.value
+	    }, "alpha", 0, 1)
+	    rot.width=this.w.width-6;	    
+    	y+=50;
+
+
+    	
 
     	var rot1 = new DSliderBig(this.w.content, 2, y,function(){
 	        self.object.height=this.value;
@@ -236,6 +313,13 @@ export class MComb  {
 	    rot1.width=this.w.width-6;
 	    rot1.okrug=1;
     	y+=50;
+
+    	var rot2 = new DSliderBig(this.w.content, 2, y,function(){
+	        self.object.rA=this.value;
+	    }, "rA", -1, 1);
+	    rot2.width=this.w.width-6;	    
+    	y+=50;
+
 
     	var textArea = new DTextArea(this.w.content, 2, y,"null",function(){
 	        self.object.text=this.value;
@@ -245,18 +329,37 @@ export class MComb  {
     	textArea.timeFun=1;
     	y+=50;
 
+    	var color = new DColor(this.w.content, 2, y,"#ffffff",function(){
+	        self.object.colorText=this.value;
+	    });
+	    color.width=this.w.width-4;	   
+    	y+=34;
 
+		var rot3 = new DSliderBig(this.w.content, 2, y,function(){
+	        self.object.fontSize=this.value;
+	    }, "fontSize", 1, 100)
+	    rot3.width=this.w.width-6;
+	    rot3.okrug=1;
+    	y+=50;
 
-
+    	var check1 = new DCheckBox(this.w.content, 2, y,"center",function(){
+	        self.object.center=this.value;
+	    })
+	    y+=28;
 
     	this.object;
 	    this.setObject=function(object){
-	    	this.object=object; 
-	    	rot1.value=self.object.height;	
+	    	this.object=object;
+	    	rot.value=self.object.alpha; 
+	    	rot1.value=self.object.height;
+	    	rot2.value=self.object.rA;		
 	    	check.value=self.object.visible;
-	    	trace(">>>>>>",self.object.visible)
-	    	textArea.value=	self.object.text;
 	    	
+	    	textArea.value=	self.object.text;
+	    	color.value=self.object.colorText;
+	    	rot3.value=self.object.fontSize;
+
+	    	check1.value=self.object.center;
 	    }
 
     	this.w.height=y+34;

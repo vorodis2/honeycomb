@@ -35,6 +35,7 @@ export function TStyle () {
 	this._colorText1="#999999";
 	this._fontSize = 16;
 	this._fontFamily = "Arial";
+	
 
 
 
