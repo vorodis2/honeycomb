@@ -277,6 +277,7 @@ export class HScane  {
             o.startVisi=this.startVisi
             o.time=this.time
             o.array=[];
+            trace(arrayHoney)
             for (var i = 0; i < arrayHoney.length; i++) {
                 if(arrayHoney[i].life==true){
                     o.array.push(arrayHoney[i].getObj())
@@ -285,7 +286,8 @@ export class HScane  {
             return o;
         }
 
-        this.setObj=function(o){            
+        this.setObj=function(o){  
+                      
             if(o.array==undefined)return;
             for (var i = 0; i < arrayHoney.length; i++) {
                 arrayHoney[i].life=false;

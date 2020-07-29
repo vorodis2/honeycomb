@@ -49,12 +49,16 @@ export class MenuHoneycomb  {
 
 	    this.setObj=function(o){	    	
 	    	let s=JSON.stringify(o);
+
+	    	if(array[0].check.value==true){
+	    		s=JSON.stringify(o, null, '\t');
+	    	}
 	        array[0].textArea.value=s;
             
         }
 
         var honeyTest;
-        this.test2=function(str){
+        this.test2=function(obj){
         	var wind=new DWindow(this.dCont, 300, 200,"тест второй сцены и событий");
     		wind.width=400;
     		wind.height=400;
@@ -68,8 +72,8 @@ export class MenuHoneycomb  {
 
     		honeyTest=new Honeycomb('resources/font/helvetiker_bold.typeface.json',function(s,p,p1){    			
     			if(s=="complit"){    				
-    				let o=JSON.parse(str);
-					honeyTest.setObj(o);
+    				trace(obj)
+					honeyTest.setObj(obj);
 
 					honeyTest.sizeWindow(wind.width, wind.height-204);
     			}
@@ -117,17 +121,7 @@ export class MStart  {
 	    b.width=this.w.width-4;
     	y+=34;
 
-    	b = new DButton(this.w.content, 2, y, "get",function(){
-	        self.par.fun("getObj");	        
-	    });
-	    b.width=(this.w.width-6)/2;
-
-	    b = new DButton(this.w.content, (this.w.width-6)/2+4, y, "set",function(){
-	        let o=JSON.parse(self.textArea.value);
-	        self.par.fun("setObj",o);
-	    })
-	    b.width=(this.w.width-6)/2;
-	    y+=34;
+    	
 
 	    var bGetScane = new DButton(this.w.content, (this.w.width-2)-b.height, y, "<",function(){
 	        /*let o=JSON.parse(textArea.value);
@@ -155,14 +149,37 @@ export class MStart  {
 	    this.input.width=-6+bGetScane.x;    
 
 	    y+=34;
+		
+		b = new DButton(this.w.content, 2, y, "get",function(){
 
+	        self.par.fun("getObj");
+
+	    });
+	    b.width=(this.w.width-6)/2;
+
+	    b = new DButton(this.w.content, (this.w.width-6)/2+4, y, "set",function(){
+	        let o=JSON.parse(self.textArea.value);
+	        self.par.fun("setObj",o);
+	    })
+	    b.width=(this.w.width-6)/2;
+
+		this.check = new DCheckBox(this.w.content, 4, y+6," ",function(){
+	       	self.par.fun("getObj");
+	    })
+
+	    y+=34;
 
 	    this.textArea=new DTextArea(this.w.content, 2, y, "null",function(){
 	        
 	    });
 	    this.textArea.width=this.w.width-4;
 	    this.textArea.height=100;
+
+		
+
 	    y+=this.textArea.height+2;
+
+	    
 
 	    var rot = new DSliderBig(this.w.content, 2, y,function(){
 	        self.object.time=this.value
