@@ -58,27 +58,32 @@ export class MenuHoneycomb  {
         }
 
         var honeyTest;
-        this.test2=function(obj){
-        	var wind=new DWindow(this.dCont, 300, 200,"тест второй сцены и событий");
-    		wind.width=400;
-    		wind.height=400;
+        this.test2 = function(obj,scan){
+        	var wind=new DWindow(this.dCont, 800, 0,"тест второй сцены и событий");
+    		wind.width=300;
+    		wind.height=300;
+    		wind.x=document.documentElement.clientWidth-wind.width
     		//this.w.dragBool=false;
     		//this.w.hasMinimizeButton=false;
-    		var textArae=new DTextArea(wind.content,2,wind.height-204,"",function(){
+    		var textArae=new DTextArea(wind.content,2,wind.height-104,"",function(){
 
     		})
     		textArae.width=wind.width-4
-    		textArae.height=200
+    		textArae.height=100
 
     		honeyTest=new Honeycomb('resources/font/helvetiker_bold.typeface.json',function(s,p,p1){    			
     			if(s=="complit"){    				
     				trace(obj)
 					honeyTest.setObj(obj);
 
-					honeyTest.sizeWindow(wind.width, wind.height-204);
+					honeyTest.sizeWindow(wind.width, wind.height-104);
     			}
     			textArae.text=s+" "+p+"\n"+textArae.text;
-    		});
+    		},
+    		scan
+    		//'{"ambient":{"works":true,"active":true,"color":"#48f813","intensity":0.79},"shadow":{"works":true,"active":true,"mapSize":4096,"color":"#f62c73","bias":0.001,"intensity":0.22,"radius":1,"bAlphaForCoating":false,"fixation":false,"rotationX":0,"rotationZ":0,"distance":0,"cubWidth":500,"cubHeight":500,"distanceUpdateShadow":65.41},"sky":{"works":true,"active":true,"color":"#080808","link":"null","rotZ":0,"radius":1000,"x":204,"y":0,"z":0},"mirror":{"works":true,"link":"null","exposure":-1,"gamma":-1},"visi3D":{"works":true,"alwaysRender":false,"fov":45,"far":45000,"minZum":0,"maxZum":20000,"zume":250,"minRotationX":2.5,"maxRotationX":0,"debug":false,"isDragPan":true,"rotationX":0,"rotationZ":0}}'
+    		//'{"ambient":{"works":true,"active":true,"color":"#ffffff","intensity":0.79},"shadow":{"works":true,"active":false,"mapSize":4096,"color":"#ffffff","bias":0.001,"intensity":0.22,"radius":1,"bAlphaForCoating":false,"fixation":false,"rotationX":0,"rotationZ":0,"distance":0,"cubWidth":500,"cubHeight":500,"distanceUpdateShadow":65.41},"sky":{"works":true,"active":false,"color":"0xffffff","link":"null","rotZ":0,"radius":1000,"x":0,"y":0,"z":0},"mirror":{"works":true,"link":"null","exposure":-1,"gamma":-1},"visi3D":{"works":true,"alwaysRender":false,"fov":45,"far":45000,"minZum":0,"maxZum":20000,"zume":250,"minRotationX":2.5,"maxRotationX":0,"debug":false,"isDragPan":true,"rotationX":0,"rotationZ":0}}'
+    		);
     		
     		wind.content.div.appendChild(honeyTest.div); //приатачиваем див там 3д и соты
         }
@@ -113,15 +118,30 @@ export class MStart  {
     	this.w.dragBool=false;
     	this.w.hasMinimizeButton=false;
 
+    	//SceneSB
+    	this.menuScene=undefined;
+    	
+    	
+    	this.opentScane=function(){
+    		bopent.visible=false
+    		var oo=self.par.fun("returnHoneycomb");    		
+			self.menuScene = new MenuScene(self.w.content, oo.visi3D, function(s,p){ trace(s,p)});	
+    	}
+    			
+    	var bopent = new DButton(this.w, 170, 2, ">>",function(){
+	        self.opentScane()
+	    })
+	    bopent.height=28
+	   	bopent.width=28
+    			
+
     	let y=2;
 
     	var b = new DButton(this.w.content, 2, y, "creatHoney",function(){
 	        self.par.fun("creatHoney");
 	    })
 	    b.width=this.w.width-4;
-    	y+=34;
-
-    	
+    	y+=34;    	
 
 	    var bGetScane = new DButton(this.w.content, (this.w.width-2)-b.height, y, "<",function(){
 	        /*let o=JSON.parse(textArea.value);
