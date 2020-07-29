@@ -253,8 +253,14 @@ export default function MEvent3DArr (par, camera, contentHTML, stage) {
 	this.zdvigX = 0;
 	this.scale = 1;
 	this.pV = new THREE.Vector2(0, 0);
-	this.restartPoint = function (e) {
+	var rect = {x:0,y:0}//e.target.getBoundingClientRect();
 		
+
+
+	this.restartPoint = function (e) {
+		if(e && e.target){
+			rect = e.target.getBoundingClientRect();
+		}
 			
 		if (self.devas==false) {
 			self.pV.x = e.clientX;
@@ -262,8 +268,13 @@ export default function MEvent3DArr (par, camera, contentHTML, stage) {
 		}else{				
 			self.pV.x = e.touches[0].clientX;
 			self.pV.y = e.touches[0].clientY;
-		}			
-		
+		}
+
+		self.pV.x-=rect.x;
+		self.pV.y-=rect.y;
+
+
+			
 		
 		
 		if (self.isRect(self.pV) == true) {
@@ -313,8 +324,7 @@ export default function MEvent3DArr (par, camera, contentHTML, stage) {
 				self.event3D.originalEvent = self.event;			
 				self.eventSob.dispatcherEvent('up', self.event3D);
 				self.uuid = 'nullMy'
-			}
-			
+			}	
 			
 		}
 		
@@ -326,7 +336,7 @@ export default function MEvent3DArr (par, camera, contentHTML, stage) {
 		else self.event = e;
 		
 		self.restartPoint(e);
-		
+
 		if (self._activ == false) return;
 		
 		if (self.devas==false){	

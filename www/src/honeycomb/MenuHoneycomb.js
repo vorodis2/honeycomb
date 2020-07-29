@@ -1,3 +1,7 @@
+
+import { Honeycomb} from './Honeycomb.js';
+
+
 export class MenuHoneycomb  {
     constructor(fun) {    	
 		this.type="MenuHoneycomb";		
@@ -49,6 +53,39 @@ export class MenuHoneycomb  {
             
         }
 
+        var honeyTest;
+        this.test2=function(str){
+        	var wind=new DWindow(this.dCont, 300, 200,"тест второй сцены и событий");
+    		wind.width=400;
+    		wind.height=400;
+    		//this.w.dragBool=false;
+    		//this.w.hasMinimizeButton=false;
+    		var textArae=new DTextArea(wind.content,2,wind.height-204,"",function(){
+
+    		})
+    		textArae.width=wind.width-4
+    		textArae.height=200
+
+    		honeyTest=new Honeycomb('resources/font/helvetiker_bold.typeface.json',function(s,p,p1){    			
+    			if(s=="complit"){    				
+    				let o=JSON.parse(str);
+					honeyTest.setObj(o);
+
+					honeyTest.sizeWindow(wind.width, wind.height-204);
+    			}
+    			textArae.text=s+" "+p+"\n"+textArae.text;
+    		});
+    		
+    		wind.content.div.appendChild(honeyTest.div); //приатачиваем див там 3д и соты
+        }
+
+        this.upDate=function(){
+        	if(honeyTest){
+        		honeyTest.upDate()
+        	}
+        }
+
+
 	    this.sizeWindow=function(w,h){
 	    	for (var i = array.length - 1; i >= 0; i--) {
 	    		if(array[i].sizeWindow)array[i].sizeWindow(w,h);
@@ -98,9 +135,7 @@ export class MStart  {
 	        if(this.text=="<"){
 	        	let visi3D=self.par.fun("returnVisi3D");
 	        	let s=JSON.stringify(visi3D.getObj());
-	        	let s1=s.replace(/"/gi,'|');
-
-	        	
+	        	let s1=s.replace(/"/gi,'|');	        	
 	        	self.object.startVisi=s1;
 	        	self.input.value=self.object.startVisi;
 	        	this.text="x";
@@ -129,19 +164,25 @@ export class MStart  {
 	    this.textArea.height=100;
 	    y+=this.textArea.height+2;
 
+	    var rot = new DSliderBig(this.w.content, 2, y,function(){
+	        self.object.time=this.value
+	    }, "time", 0, 2000)
+	    rot.width=this.w.width-6;
+	    rot.okrug=1;	    
+    	y+=50;
+
 
 	    this.setObject=function(object){	    	
 	    	this.object=self.par.fun("returnScane");
-	    	trace(">>>>",this.object);
 
-	    	self.input.value=self.object.startVisi;
-	    	trace(">>>>>>>>>>>>>>>>>>",self.input.value);
+	    	self.input.value=self.object.startVisi;	    	
 	    	if(self.input.value == "null"){
 	    		bGetScane.text="<"
 	    	}else{
 	    		bGetScane.text="x"
 	    	}
-
+	    	self.par.fun("index",-1);
+	    	rot.value=this.object.time;
 	    }
 
 
@@ -167,6 +208,23 @@ export class MHoney  {
     	this.w.hasMinimizeButton=false;
 
     	let y=2;
+
+    	let ww=26.3;
+    	for (var i = 0; i < 7; i++) {
+    		let bb=new DButton(this.w.content, 2+(ww+2)*i, y,i+"",function(){
+    			par.setObject(self.object.array[this.idArr])
+    		})
+    		bb.width=ww
+    		bb.idArr=i
+    	}
+    	y+=34;
+    	/*var rot = new DSliderBig(this.w.content, 2, y,function(){
+	        self.object.rotation=this.value*Math.PI/180
+	    }, "rotation", -180, 180)
+	    rot.width=this.w.width-6;
+	    rot.okrug=1;
+    	y+=50;*/
+
 
     	var rot = new DSliderBig(this.w.content, 2, y,function(){
 	        self.object.rotation=this.value*Math.PI/180
@@ -247,6 +305,35 @@ export class MHoney  {
     	y+=50;	
 
 
+    	var bGetScane = new DButton(this.w.content, (this.w.width-2)-32, y, "<",function(){
+	       
+	        if(this.text=="<"){
+	        	let visi3D=self.par.fun("returnVisi3D");
+	        	let s=JSON.stringify(visi3D.getObj());
+	        	let s1=s.replace(/"/gi,'|');	        	
+	        	self.object.startVisi=s1;
+	        	self.input.value=self.object.startVisi;
+	        	this.text="x";
+	        	return
+	        }
+	        if(this.text=="x"){
+	        	self.object.startVisi="null";
+	        	self.input.value="null";
+	        	this.text="<";
+	        }
+	    })
+	    bGetScane.width=bGetScane.height;
+
+	    this.input=new DInput(this.w.content, 2, y, "null",function(){
+	        
+	    });
+	    this.input.width=-6+bGetScane.x;    
+
+	    y+=34;/**/
+
+
+
+
     	this.object;
 	    this.setObject=function(object){
 	    	this.object=object; 
@@ -263,6 +350,10 @@ export class MHoney  {
 	    	textArea.value=self.object.text;
 	    	color1.value=self.object.colorText;
 	    	rot3.value=self.object.fontSize;
+
+	    	self.par.fun("index",self.object.idArr);
+	    	
+
 	    }
 
     	this.w.height=y+34;
@@ -347,6 +438,16 @@ export class MComb  {
 	    })
 	    y+=28;
 
+	    var check2 = new DCheckBox(this.w.content, 2, y,"boolAM",function(){
+	        self.object.boolAM=this.value;
+	    })
+	    y+=28;
+
+	    var check3 = new DCheckBox(this.w.content, 2, y,"visiActiv (not save)",function(){
+	        self.object.visiActiv=this.value;
+	    })
+	    y+=28;	
+
     	this.object;
 	    this.setObject=function(object){
 	    	this.object=object;
@@ -360,6 +461,8 @@ export class MComb  {
 	    	rot3.value=self.object.fontSize;
 
 	    	check1.value=self.object.center;
+	    	check2.value=self.object.boolAM;	    	
+	    	check3.value=self.object.visiActiv;
 	    }
 
     	this.w.height=y+34;

@@ -325,15 +325,23 @@ export function MVisi3D (_contentHTML, _content2d, _devas, _directional, _efect,
     };
 
 
+    this.in360 = function(n){
+    	
+    	if(n>Math.PI) return this.in360(n-Math.PI*2);
+    	if(n<-Math.PI) return this.in360(n+Math.PI*2);	
+    	return n*1;
+    }
+
 
     this.getObj= function(){ 
         var o={}
-       	o.xVerh = this._xVerh;
-		o.yVerh = this._yVerh;
-		o.zVerh = this._zVerh
-		o.rotationX = this._rotationX;
-		o.rotationZ = this._rotationZ;
-		o.zume = this._zume;	
+       	o.xVerh = Math.round(this._xVerh*100)/100;
+		o.yVerh = Math.round(this._yVerh*100)/100;
+		o.zVerh = Math.round(this._zVerh*100)/100;
+		o.rotationX = Math.round(this._rotationX*100)/100;		
+		o.rotationZ = Math.round(this.in360(this._rotationZ)*100)/100;	
+		o.zume = Math.round(this._zume*100)/100;
+		
         return o
     }
  
@@ -345,7 +353,8 @@ export function MVisi3D (_contentHTML, _content2d, _devas, _directional, _efect,
 		this.yVerh = o.yVerh;
 		this.zVerh = o.zVerh;
 		this.rotationX = o.rotationX;
-		this.rotationZ = o.rotationZ;
+		this.rotationZ = this.in360(this._rotationZ)	
+		this.rotationZ = this.in360(o.rotationZ);
 		this.zume = o.zume;
     }
 

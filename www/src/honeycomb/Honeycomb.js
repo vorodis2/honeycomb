@@ -103,12 +103,20 @@ export class Honeycomb  {
         content3d.add( c3d );*/
 
         this.out = function (e) {    
-
+            if(e && e.target && e.target.hron && e.target.hron.type=="Comb"){
+                window.document.body.style.cursor = "auto";  
+            }
         }
 
 
         this.over = function (e) {    
-
+            if(e && e.target && e.target.hron && e.target.hron.type=="Comb"){
+                if(e.target.hron.boolAM==true){
+                    window.document.body.style.cursor = "pointer"; 
+                    e.target.hron.activeOver() 
+                }
+                
+            }
         }
 
         this.down = function (e) { 
@@ -132,6 +140,12 @@ export class Honeycomb  {
 
         this.setApi=function(s,p,p1){
             if(s=="creatHoney") return hScane.creatHoney();
+
+            if(s=="index") {
+
+                hScane.index=p;
+                return true;
+            }
             return null;
         } 
 
@@ -172,13 +186,6 @@ export class Honeycomb  {
     }
     get activObject() { return  this._activObject;}
 
-
-
-
-
-
-
-
 }  
 
 
@@ -188,16 +195,19 @@ export class HScane  {
         var self=this;
         this.par=par
         this._color="#ffffff";
-        this._height=10;
+        this._height=12;
         this._radius=300;
-        this._startVisi ="null";       
+        this._startVisi ="null";
+
+        this._index=-1;
+        this._time=500;
+
 
         this.content3d = new THREE.Object3D();
-
         this.geometry = new THREE.CylinderBufferGeometry( 1, 1, 1, 6 );
 
-
         var arrayHoney=[];
+        this.arrayHoney=arrayHoney
 
         this.sob=function(s,p){
 
@@ -239,12 +249,12 @@ export class HScane  {
         };
 
 
-        //trace("this.getVector ",this.getVector(1,(Math.PI*2)/6).y*2)
+   
 
         this.tween = new TWEEN.Tween(par.visi3D); 
 
         this.startAnimat=function(s,t){
-            if(!t)t=500;
+            if(!t)t=this._time;
             if(!s)return
             if(s=="null")return 
             let s1=''
@@ -252,9 +262,10 @@ export class HScane  {
                 if(s[i]=="|")s1+='"';
                 else s1+=s[i];
             }
-            
+            let nn=-Math.PI
+            par.visi3D.rotationZ = par.visi3D.in360(par.visi3D._rotationZ);
             let o =JSON.parse(s1);
-            trace("++++++++",o)
+            o.rotationZ = par.visi3D.in360(o.rotationZ);
             this.tween.to(o, t).start();
         }
 
@@ -264,6 +275,7 @@ export class HScane  {
         this.getObj=function(){
             var o={}
             o.startVisi=this.startVisi
+            o.time=this.time
             o.array=[];
             for (var i = 0; i < arrayHoney.length; i++) {
                 if(arrayHoney[i].life==true){
@@ -278,14 +290,12 @@ export class HScane  {
             for (var i = 0; i < arrayHoney.length; i++) {
                 arrayHoney[i].life=false;
             }
-
             for (var i = 0; i < o.array.length; i++) {
                 let obj=this.creatH();
                 obj.setObj(o.array[i]);                
-            } 
-            trace(">>>>",o.startVisi)
+            }             
             if(o.startVisi)this.startVisi=o.startVisi;
-
+            if(o.time)this.time=o.time;
 
             this.render();   
         }
@@ -306,6 +316,29 @@ export class HScane  {
         }             
     }
     get startVisi() { return  this._startVisi;}
+
+    set index(value) {
+        if(this._index != value){        
+            this._index = value;           
+            for (var i = 0; i < this.arrayHoney.length; i++) {                
+                if(i==this._index)this.arrayHoney[i].active=true;
+                else this.arrayHoney[i].active=false;
+            }
+           
+        }             
+    }
+    get index() { return  this._index;}
+
+
+    set time(value) {
+        if(this._time != value){        
+            this._time = value;
+        }             
+    }
+    get time() { return  this._time;}
+
+
+
 }
 
 
@@ -328,26 +361,35 @@ export class Honey  {
         this._z=0;
         this._rotation=0;
 
+        this._active=false;
+        this._progresActive=0;
+
         this._text="";
         this._colorText="#ffffff";
         this._fontSize=16;
 
+        this._startVisi="null"
+
         this.content3d = new THREE.Object3D();
         this.par.content3d.add(this.content3d);
 
+        this.c3d = new THREE.Object3D();
+        this.content3d.add(this.c3d);
+  
 
-        this.comb=new Comb(this,this.content3d);//основная сота
+
+        this.comb=new Comb(this,this.c3d);//основная сота
         this.comb.mesh.hron=this;
         this.par.par.visi3D.addChildMouse(this.comb.mesh);
 
 
-        this.comb1=new Comb(this,this.content3d);//тень
+        this.comb1=new Comb(this,this.c3d);//тень
         this.comb1.alpha=0.1;
         this.comb1.height=0.01;
         this.comb1.radius=this._radius;
 
         for (var i = 0; i < 7; i++) {
-            this.array.push(new Comb(this, this.content3d));
+            this.array.push(new Comb(this, this.c3d));
             this.array[i].idArr=i;
             if(i==0){
                 this.array[i].vector=new THREE.Vector2()
@@ -363,13 +405,14 @@ export class Honey  {
         this.draw=function(){
             this.comb.height=this._height;
             this.comb.radius=this._radius;
-            this.comb1.radius=this._radius;
-
+            this.comb1.radius=this._radius+this._radius*this._progresActive;
+            this.c3d.position.y=this._height*3*this._progresActive;
             for (var i = 0; i < this.array.length; i++) {
-                this.array[i].radius= this._radius/3;
+                this.array[i].radius = this._radius/3;
                 this.array[i].content3d.position.y=this._height
+                this.array[i].draw()
             }
-            this.render()
+            this.render();
         }
 
 
@@ -382,6 +425,7 @@ export class Honey  {
             o.radius=this.radius;
             o.color=this.color;
             o.height=this.height;
+            o.startVisi=this.startVisi;
             o.array=[];
             for (var i = 0; i < 7; i++) {
                 o.array[i]=this.array[i].getObj()
@@ -395,6 +439,7 @@ export class Honey  {
             return o;
         }
 
+
         this.setObj=function(o){   
             this.radius=o.radius;
             this.color=o.color;
@@ -402,8 +447,8 @@ export class Honey  {
             this.rotation=o.rotation;
             this.x=o.x;
             this.y=o.y;
-            this.z=o.z;        
-
+            this.z=o.z;
+            if(o.startVisi)this.startVisi=o.startVisi;
 
             if(o.text){
                 this.text=o.text;
@@ -422,7 +467,20 @@ export class Honey  {
             this.render();   
         }
 
+        var outp={p:0}
+        this.tween = new TWEEN.Tween(this); 
+       
 
+        this.redragActive=function(){
+            this.tween.stop();
+            
+            if(this._active==true){ 
+                this.tween.to({progresActive:1}, this.par.time).start();  
+                this.par.startAnimat(this._startVisi)                
+            }else{
+                this.tween.to({progresActive:0}, this.par.time).start();
+            }
+        }
 
 
         this.render=function(){
@@ -431,6 +489,15 @@ export class Honey  {
 
         this.draw();
     }
+
+
+    set startVisi(value) {
+        if(this._startVisi != value){        
+            this._startVisi = value;
+                      
+        }             
+    }
+    get startVisi() { return  this._startVisi;}
 
     set life(value) {
         if(this._life != value){        
@@ -447,12 +514,30 @@ export class Honey  {
     }
     get life() { return  this._life;}
 
+    set active(value) {
+        if(this._active != value){        
+            this._active = value;                       
+            this.redragActive();
+        }             
+    }
+    get active() { return  this._active;}
+
+
+    set progresActive(value) {
+        if(this._progresActive != value){        
+            this._progresActive = value;  
+            this.draw();
+            
+        }             
+    }
+    get progresActive() { return  this._progresActive;}
+
+    
+
     set x(value) {
         if(this._x != value){        
             this._x = value;
-            this.content3d.position.x=value;
-
-            
+            this.content3d.position.x=value;           
             this.render()
         }             
     }
@@ -573,8 +658,12 @@ export class Comb  {
         this._fontSize=16;
 
         this._center=true;
+        this._boolAM=true;
+
+        this._visiActiv = false; 
 
         this._text="";
+        this.sr1=-0.2
         var sr=0.2
         this._rA=(Math.random()*sr*2-sr);
         this.material=new THREE.MeshPhongMaterial({color:this._color})
@@ -583,11 +672,15 @@ export class Comb  {
         this.material.color.b+=this._rA;
 
 
+        this.material1=new THREE.MeshPhongMaterial({color:this._color})
+        this.material1.color.r+=this._rA+this.sr1;
+        this.material1.color.g+=this._rA+this.sr1;
+        this.material1.color.b+=this._rA+this.sr1;
 
 
 
         this.content3d = new THREE.Object3D();        
-        this.par.content3d.add(this.content3d);
+        c3d.add(this.content3d);
 
         this.c3dt = new THREE.Object3D();        
         this.content3d.add(this.c3dt);
@@ -596,6 +689,13 @@ export class Comb  {
 
         this.mesh=new THREE.Mesh(this.par.par.geometry,this.material);
         this.content3d.add(this.mesh);
+
+
+        
+        this.meshActiv=new THREE.Mesh(this.par.par.geometry,this.material1);
+        this.content3d.add(this.meshActiv);
+        this.meshActiv.visible=this._visiActiv;
+
 
 
         this.tLabel = new TLabel(this.c3dt, 0,0,this._text);        
@@ -614,11 +714,19 @@ export class Comb  {
 
             this.mesh.scale.x=this._radius;
             this.mesh.scale.z=this._radius;
-            
+
+            this.meshActiv.scale.x=this._radius;
+            this.meshActiv.scale.z=this._radius;
+            this.meshActiv.scale.y=0.01;
+
+            this.meshActiv.position.y=this._height+1;
 
             if(this.vector){
-                this.content3d.position.x=this.vector.x*this._radius*1.7320508075688772;
-                this.content3d.position.z=this.vector.y*this._radius*1.7320508075688772;                
+                let d=this._radius*1.7320508075688772
+                let d1=d+d*par._progresActive*1.5
+                this.content3d.position.x=this.vector.x*d1;
+                this.content3d.position.z=this.vector.y*d1; 
+                              
             }
             
             if(this.idArr!=-1){
@@ -633,34 +741,40 @@ export class Comb  {
             }else{
                 this.tLabel.object3d.rotation.x=0//-Math.PI/2;                
                 this.c3dt.rotation.y=Math.PI/6;
-
                 this.c3dt.position.y=this._height/2;
                 this.c3dt.position.x=this._radius;
-
                 this.c3dt.position.x=v.x*this._radius*0.87;
                 this.c3dt.position.z=v.y*this._radius*0.87;
-
-                this.tLabel.x=-this.tLabel.width/2;
-               
+                this.tLabel.x=-this.tLabel.width/2;               
                 this.tLabel.y=this.tLabel.height/2;
             }
-
-
             this.render()
-
         }
         this.render=function(){
             if(self.par.render)self.par.render()
         }
 
 
+        this.tween = new TWEEN.Tween(this.content3d.scale); 
+        this.tween.onUpdate(function(){  
+            self.render()
+        })
+        this.activeOver=function(){            
+            if(this._boolAM==false) return;
+            this.content3d.scale.y=1.1;            
+            this.tween.to({y:1}, this.par.par.time).start();            
+        }
+
+
         this.getObj=function(){
             var o={}
-            o.height=this.height;
+            o.height=Math.round(this.height*100)/100;;
             o.visible=this.visible;
             o.text=this.text;
             o.colorText=this.colorText;
             o.fontSize=this.fontSize;
+            o.boolAM=this.boolAM;
+            o.rA=Math.round(this.rA*100)/100;
             return o;
         }
 
@@ -676,6 +790,13 @@ export class Comb  {
 
             if(o.fontSize==undefined)o.fontSize=this.fontSize;
             this.fontSize=o.fontSize;
+
+            if(o.boolAM==undefined)o.boolAM=this.boolAM;
+            this.boolAM=o.boolAM;
+
+            if(o.rA==undefined)o.rA=this.rA;
+            this.rA=o.rA;
+
 
             this.draw();    
             this.render();   
@@ -743,7 +864,12 @@ export class Comb  {
             this.material.color=new THREE.Color(this._color);
             this.material.color.r+=this._rA;
             this.material.color.g+=this._rA;
-            this.material.color.b+=this._rA;            
+            this.material.color.b+=this._rA;
+
+            this.material1.color=new THREE.Color(this._color);
+            this.material1.color.r+=this._rA+this.sr1;
+            this.material1.color.g+=this._rA+this.sr1;
+            this.material1.color.b+=this._rA+this.sr1;            
             
             this.render()
         }             
@@ -759,6 +885,11 @@ export class Comb  {
             this.material.color.r+=this._rA;
             this.material.color.g+=this._rA;
             this.material.color.b+=this._rA;
+
+            this.material1.color=new THREE.Color(this._color);
+            this.material1.color.r+=this._rA+this.sr1;
+            this.material1.color.g+=this._rA+this.sr1;
+            this.material1.color.b+=this._rA+this.sr1;
             this.render();
         }             
     }
@@ -793,6 +924,26 @@ export class Comb  {
         }             
     }
     get center() { return  this._center;} 
+
+    set boolAM(value) {
+        if(this._boolAM != value){        
+            this._boolAM = value;           
+            this.render();
+        }             
+    }
+    get boolAM() { return  this._boolAM;}
+
+
+    set visiActiv(value) {
+        if(this._visiActiv != value){        
+            this._visiActiv = value;            
+            this.meshActiv.visible=this._visiActiv;       
+            this.render();
+        }             
+    }
+    get visiActiv() { return  this._visiActiv;}    
+
+
     
 
 
