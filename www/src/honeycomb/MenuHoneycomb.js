@@ -166,7 +166,7 @@ export class MStart  {
             })
 	    })
 
-	    var b = new DButton(this.w.content, 302, -32, "initConfig2.json",function(){
+	    var b = new DButton(this.w.content, 402, -32, "initConfig2.json",function(){
 	        $.ajax({
                 url: "initConfig2.json",
                 success: function function_name(data) {                         
