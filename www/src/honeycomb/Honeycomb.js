@@ -312,7 +312,7 @@ export class HScane  {
             o.array=[];
             
             for (var i = 0; i < arrayHoney.length; i++) {
-                if(arrayHoney[i].life==true){
+                if(arrayHoney[i].life == true){
                     o.array.push(arrayHoney[i].getObj())
                 }
             }
@@ -426,6 +426,9 @@ export class Honey  {
         this.comb1.alpha=0.1;
         this.comb1.height=0.01;
         this.comb1.radius=this._radius;
+
+        this.comb.rA=0;
+        this.comb1.rA=0;
 
         for (var i = 0; i < 7; i++) {
             this.array.push(new Comb(this, this.c3d));
