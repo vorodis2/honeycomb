@@ -77,9 +77,9 @@ export class MenuHoneycomb  {
 					honeyTest.sizeWindow(wind.width, wind.height-104);
     			}
     			textArae.text=s+" "+p+"\n"+textArae.text;
-    		}/*,
+    		},/*,
     		scan*/
-    		//'{"ambient":{"works":true,"active":true,"color":"#48f813","intensity":0.79},"shadow":{"works":true,"active":true,"mapSize":4096,"color":"#f62c73","bias":0.001,"intensity":0.22,"radius":1,"bAlphaForCoating":false,"fixation":false,"rotationX":0,"rotationZ":0,"distance":0,"cubWidth":500,"cubHeight":500,"distanceUpdateShadow":65.41},"sky":{"works":true,"active":true,"color":"#080808","link":"null","rotZ":0,"radius":1000,"x":204,"y":0,"z":0},"mirror":{"works":true,"link":"null","exposure":-1,"gamma":-1},"visi3D":{"works":true,"alwaysRender":false,"fov":45,"far":45000,"minZum":0,"maxZum":20000,"zume":250,"minRotationX":2.5,"maxRotationX":0,"debug":false,"isDragPan":true,"rotationX":0,"rotationZ":0}}'
+    		'{"ambient":{"works":true,"active":true,"color":"#48f813","intensity":0.79},"shadow":{"works":true,"active":true,"mapSize":4096,"color":"#f62c73","bias":0.001,"intensity":0.22,"radius":1,"bAlphaForCoating":false,"fixation":false,"rotationX":0,"rotationZ":0,"distance":0,"cubWidth":500,"cubHeight":500,"distanceUpdateShadow":65.41},"sky":{"works":true,"active":true,"color":"#080808","link":"null","rotZ":0,"radius":1000,"x":204,"y":0,"z":0},"mirror":{"works":true,"link":"null","exposure":-1,"gamma":-1},"visi3D":{"works":true,"alwaysRender":false,"fov":45,"far":45000,"minZum":0,"maxZum":20000,"zume":250,"minRotationX":2.5,"maxRotationX":0,"debug":false,"isDragPan":true,"rotationX":0,"rotationZ":0}}'
     		//'{"ambient":{"works":true,"active":true,"color":"#ffffff","intensity":0.79},"shadow":{"works":true,"active":false,"mapSize":4096,"color":"#ffffff","bias":0.001,"intensity":0.22,"radius":1,"bAlphaForCoating":false,"fixation":false,"rotationX":0,"rotationZ":0,"distance":0,"cubWidth":500,"cubHeight":500,"distanceUpdateShadow":65.41},"sky":{"works":true,"active":false,"color":"0xffffff","link":"null","rotZ":0,"radius":1000,"x":0,"y":0,"z":0},"mirror":{"works":true,"link":"null","exposure":-1,"gamma":-1},"visi3D":{"works":true,"alwaysRender":false,"fov":45,"far":45000,"minZum":0,"maxZum":20000,"zume":250,"minRotationX":2.5,"maxRotationX":0,"debug":false,"isDragPan":true,"rotationX":0,"rotationZ":0}}'
     		);
     		
@@ -122,8 +122,11 @@ export class MStart  {
     	
     	this.opentScane=function(){
     		bopent.visible=false
-    		var oo=self.par.fun("returnHoneycomb");    		
-			self.menuScene = new MenuScene(self.w.content, oo.visi3D, function(s,p){ trace(s,p)});	
+    		var oo=self.par.fun("returnHoneycomb");
+
+			self.menuScene = new MenuScene(self.w.content, oo.visi3D, function(s,p){ trace(s,p)});
+			self.menuScene.sceneSB.setObj(JSON.parse(oo.jsonCamera))
+			self.menuScene.setObj()	
     	}
     			
     	var bopent = new DButton(this.w, 170, 2, ">>",function(){
@@ -134,6 +137,10 @@ export class MStart  {
     			
 
     	let y=2;
+
+    	 
+		
+
 
     	var b = new DButton(this.w.content, 2, y, "creatHoney",function(){
 	        self.par.fun("creatHoney");
@@ -243,6 +250,16 @@ export class MHoney  {
     	this.w.hasMinimizeButton=false;
 
     	let y=2;
+
+
+    	var b = new DButton(this.w.content, 2, y, "clear",function(){	        
+			self.object.life=false;
+			self.par.setObject()
+	    });
+	    b.width=(this.w.width-4);
+		y+=34;
+
+
 
     	let ww=26.3;
     	for (var i = 0; i < 7; i++) {

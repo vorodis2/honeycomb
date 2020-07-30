@@ -9,7 +9,7 @@
 				"z": 0,
 				"rotation": 0,
 				"radius": 300,
-				"color": "#1336a5",
+				"color": "#b049ff",
 				"height": 34,
 				"startVisi": "{|xVerh|:390.72,|yVerh|:-154.35,|zVerh|:254.16,|rotationX|:0.64,|rotationZ|:5.77,|zume|:592.2612503439516}",
 				"array": [
@@ -87,7 +87,7 @@
 				"z": 0,
 				"rotation": 0,
 				"radius": 81,
-				"color": "#ff7597",
+				"color": "#4113ca",
 				"height": 27,
 				"startVisi": "null",
 				"array": [

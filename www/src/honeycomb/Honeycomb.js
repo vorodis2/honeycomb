@@ -64,9 +64,10 @@ export class Honeycomb  {
         this.visi3D=visi3D;
 
         //хрень принемашка ресурсов и настроек камеры для 
-        var o='{"ambient":{"works":true,"active":true,"color":"#fdffff","intensity":0.71},"shadow":{"works":true,"active":true,"mapSize":4096,"color":"#8c8c8c","bias":-0.0014,"intensity":1.01,"radius":1.27,"bAlphaForCoating":false,"fixation":true,"rotationX":0.93,"rotationZ":0.73,"distance":500,"cubWidth":1000,"cubHeight":1000,"distanceUpdateShadow":65.41},"sky":{"works":true,"active":false,"color":"#ffffff","link":"null","rotZ":2.73,"radius":7008,"x":0,"y":0,"z":0},"mirror":{"works":true,"link":"null","exposure":1.44,"gamma":2.87,"xz":"reflect","link1":"null","exposure1":-1,"gamma1":-1},"visi3D":{"works":true,"alwaysRender":false,"fov":16,"far":47175,"minZum":0,"maxZum":10942,"zume":2500,"minRotationX":3.14,"maxRotationX":0,"rotationX":0.94,"rotationZ":0.17,"debug":false,"isDragPan":true,"alphaAd":false,"globZ":0,"powerZum":1},"fog":{"works":true,"active":false,"color":"#ffffff","near":0,"far":0},"effect":{"works":true,"active":false,"edgeStrength":3,"edgeGlow":0,"pulsePeriod":0,"linkTextur":"null","visibleEdgeColor":"#ffffff","hiddenEdgeColor":"#190a05"}}'
+        var o='{"ambient":{"works":true,"active":true,"color":"#fdffff","intensity":0.71},"shadow":{"works":true,"active":true,"mapSize":4096,"color":"#8c8c8c","bias":-0.0014,"intensity":1.01,"radius":1.27,"bAlphaForCoating":false,"fixation":true,"rotationX":0.93,"rotationZ":0.73,"distance":500,"cubWidth":1000,"cubHeight":1000,"distanceUpdateShadow":65.41},"sky":{"works":true,"active":false,"color":"#ffffff","link":"null","rotZ":2.73,"radius":7008,"x":0,"y":0,"z":0},"mirror":{"works":true,"link":"null","exposure":1.44,"gamma":2.87,"xz":"reflect","link1":"null","exposure1":-1,"gamma1":-1},"visi3D":{"works":true,"alwaysRender":false,"fov":16,"far":47175,"minZum":0,"maxZum":10942,"zume":2500,"minRotationX":1.14,"maxRotationX":0,"rotationX":0.94,"rotationZ":0.17,"debug":false,"isDragPan":true,"alphaAd":false,"globZ":0,"powerZum":5},"fog":{"works":true,"active":false,"color":"#ffffff","near":0,"far":0},"effect":{"works":true,"active":false,"edgeStrength":3,"edgeGlow":0,"pulsePeriod":0,"linkTextur":"null","visibleEdgeColor":"#ffffff","hiddenEdgeColor":"#190a05"}}'
         //var o='{"ambient":{"works":true,"active":true,"color":"#ffffff","intensity":0.79},"shadow":{"works":true,"active":false,"mapSize":4096,"color":"#ffffff","bias":0.001,"intensity":0.22,"radius":1,"bAlphaForCoating":false,"fixation":false,"rotationX":0,"rotationZ":0,"distance":0,"cubWidth":500,"cubHeight":500,"distanceUpdateShadow":65.41},"sky":{"works":true,"active":false,"color":"0xffffff","link":"null","rotZ":0,"radius":1000,"x":0,"y":0,"z":0},"mirror":{"works":true,"link":"null","exposure":-1,"gamma":-1},"visi3D":{"works":true,"alwaysRender":false,"fov":45,"far":45000,"minZum":0,"maxZum":20000,"zume":250,"minRotationX":2.5,"maxRotationX":0,"debug":false,"isDragPan":true,"rotationX":0,"rotationZ":0}}';
         if(paramScane)o=paramScane;
+        this.jsonCamera=o
         var scene=JSON.parse(o)
         this.sceneSB=new SceneSB(this.visi3D);
         for (var i = 0; i <  this.sceneSB.array.length; i++) {
@@ -94,14 +95,30 @@ export class Honeycomb  {
         })
 
 
+ /*       function krivo(n,p){
+            if(n<p) return 0
+            return -Math.cos((n-p)/(1-p)*Math.PI/2) +1            
+        }
+
+        var geometry = new THREE.BoxBufferGeometry( 5, 5, 5 );
+
+        for (var i = 0; i < 1; i+=0.01) {      
+            
+            var c3d = new THREE.Mesh( new THREE.BoxBufferGeometry( 10, 10, 10 ));
+            c3d.position.x=i*1000;
+            c3d.position.y=krivo(i,0.5)*1000;
+            content3d.add( c3d );
+
+
+            var c3d = new THREE.Mesh( geometry);
+            c3d.position.x=i*1000;
+            c3d.position.y=i*1000;
+            content3d.add( c3d );             
+        }
 
 
 
-/*
-        var geometry = new THREE.BoxBufferGeometry( 10, 10, 10 );
-        var material = new THREE.MeshBasicMaterial( {color: 0x777777} );
-        var c3d = new THREE.Mesh( new THREE.BoxBufferGeometry( 10, 10, 10 ));
-        content3d.add( c3d );*/
+        */
 
         this.out = function (e) {    
             if(e && e.target && e.target.hron && e.target.hron.type=="Comb"){
@@ -122,8 +139,9 @@ export class Honeycomb  {
 
         this.down = function (e) { 
 
-            if(e && e.target && e.target.hron){
-                self.activObject = e.target.hron;
+            if(e && e.target && e.target.hron){                
+                if(e.target.hron.type=="Honey")self.activObject = e.target.hron;
+                if(e.target.hron.type=="Comb")self.activObject = e.target.hron.par;
                 return
             }
 
@@ -182,6 +200,9 @@ export class Honeycomb  {
         if(this._activObject != value){        
             this._activObject = value;
             this.fun("activObject", value)
+            if(this._activObject)this.hScane.setActiv(this._activObject);
+            if(value==undefined)this.hScane.startAnimat(this.hScane.startVisi)
+            trace("this._activObject===",this._activObject)
             
         }             
     }
@@ -214,6 +235,8 @@ export class HScane  {
 
         }
 
+
+
         this.creatH=function(){
             for (var i = 0; i < arrayHoney.length; i++) {
                 if(arrayHoney[i].life==false){
@@ -225,6 +248,15 @@ export class HScane  {
             arrayHoney.push(honey);
             this.render();
             return honey;
+        }
+
+        this.drawAll=function(){
+            for (var i = 0; i < arrayHoney.length; i++) {
+                if(arrayHoney[i].life!=false){
+                    arrayHoney[i].draw()
+                }
+            }
+
         }
 
 
@@ -307,6 +339,11 @@ export class HScane  {
             self.par.render()
         }
 
+        this.actObj
+        this.setActiv=function(o){
+            this.actObj=o;
+        }
+
 
 
     }
@@ -314,8 +351,7 @@ export class HScane  {
     set startVisi(value) {
         if(this._startVisi != value){        
             this._startVisi = value;
-            this.startAnimat(value)    
-           
+            this.startAnimat(value)          
         }             
     }
     get startVisi() { return  this._startVisi;}
@@ -404,16 +440,44 @@ export class Honey  {
             this.array[i].draw();
         }
 
+        var vect=new THREE.Vector2();
+        var vect1=new THREE.Vector2();
+        var vect2=new THREE.Vector2();
+        var angel=0
+        var dist=0
+        this.getAngle;
+
 
         this.draw=function(){
             this.comb.height=this._height;
             this.comb.radius=this._radius;
             this.comb1.radius=this._radius+this._radius*this._progresActive;
-            this.c3d.position.y=this._height*3*this._progresActive;
+            //this.c3d.position.y=this._height*3*this._progresActive;
+            if(this.par.actObj){
+                if(this.par.actObj.idArr==this.idArr){
+                    this.c3d.position.x*=0.9;
+                    this.c3d.position.z*=0.9;
+                }else{
+                    vect.x=this._x;
+                    vect.y=this._z;
+
+                    vect1.x=this.par.actObj._x;
+                    vect1.y=this.par.actObj._z;
+                    angel=this.getAngle(vect,vect1)-Math.PI;
+                    dist=this.par.actObj._progresActive*this.par.actObj._radius;
+
+                    this.getVector(dist,angel,vect2);
+                    this.c3d.position.x=vect2.x
+                    this.c3d.position.z=vect2.y
+                    trace(this.idArr,this.par.actObj.idArr, angel,dist,vect2)
+                }
+            }
+
+            
             for (var i = 0; i < this.array.length; i++) {
                 this.array[i].radius = this._radius/3;
                 this.array[i].content3d.position.y=this._height
-                this.array[i].draw()
+                this.array[i].draw();
             }
             this.render();
         }
@@ -490,6 +554,50 @@ export class Honey  {
             this.par.render()
         }
 
+
+        /**
+         * Получение угла между двумя точками радианы  -PI - 0 - PI
+         * @param {Point} a - Первая точка.
+         * @param {Point} b - Вторая точка.
+         * @return {number} угол между точками.
+         */
+        this.getAngle = function (a, b) {
+            b = b || rezNull;
+            a = a || rezNull;
+            return Math.atan2(b.y - a.y, b.x - a.x);
+        };
+
+        /**
+         * Получение дистанции между точками
+         * @param {Point} p1 - Первая точка.
+         * @param {Point} p2 - Вторая точка.
+         * @return {number} дистанция(растояние) между точками.
+         */
+        this.getDistance = function (p1, p2) {
+            if (p1 == undefined) {
+                return 0;
+            }
+            if (p2 == undefined) {
+                p2 = rezNull;
+            }
+            p2 = p2 || rezNull;
+            return Math.sqrt(Math.pow((p1.x - p2.x), 2) + Math.pow((p1.y - p2.y), 2));
+        };
+
+        /**
+         * Получение точки от угла и длинны
+         * @param {number} length - длинна вектора.
+         * @param {number} angle - угол в радианах
+         * @return {Point} от угла и длины получаем вектор точки
+         */
+        this.getVector = function (length, angle, point) {
+            if (point == undefined) var point = new THREE.Vector2(0, 0);
+            if (length < 0) angle += Math.PI;
+            point.x = Math.abs(length) * Math.cos(angle);
+            point.y = Math.abs(length) * Math.sin(angle);
+            return point;
+        };
+
         this.draw();
     }
 
@@ -529,7 +637,7 @@ export class Honey  {
     set progresActive(value) {
         if(this._progresActive != value){        
             this._progresActive = value;  
-            this.draw();
+            this.par.drawAll();
             
         }             
     }
@@ -715,6 +823,8 @@ export class Comb  {
             
             this.mesh.position.y=this._height/2;
 
+            //
+
             this.mesh.scale.x=this._radius;
             this.mesh.scale.z=this._radius;
 
@@ -728,12 +838,18 @@ export class Comb  {
                 let d=this._radius*1.7320508075688772
                 let d1=d+d*par._progresActive*1.5
                 this.content3d.position.x=this.vector.x*d1;
-                this.content3d.position.z=this.vector.y*d1; 
-                              
+                this.content3d.position.z=this.vector.y*d1;
+
+
+                if(this.vector.x!=0&&this.vector.y!=0){
+                   
+                    this.content3d.position.y=(1-krivo(par._progresActive,0.5))*par._height;   
+                }           
             }
             
             if(this.idArr!=-1){
                 this.c3dt.position.y=this._height;
+
                 this.c3dt.rotation.y=-Math.PI/6;
                 this.tLabel.x=-this.tLabel.width/2;
                 if(this._center==true){
@@ -751,8 +867,15 @@ export class Comb  {
                 this.tLabel.x=-this.tLabel.width/2;               
                 this.tLabel.y=this.tLabel.height/2;
             }
-            this.render()
+            this.render();
         }
+
+        function krivo(n,p){
+            if(n<p) return 0
+            return -Math.cos((n-p)/(1-p)*Math.PI/2) +1            
+        }
+
+
         this.render=function(){
             if(self.par.render)self.par.render()
         }
