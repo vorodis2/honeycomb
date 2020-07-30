@@ -47,7 +47,7 @@
 
 
 			$.ajax({
-                url: "initConfig.json",
+                url: "initConfig2.json",
                 success: function function_name(data) {                         
                     var oo;
                     if(typeof data === "string") {
@@ -113,6 +113,12 @@
 		}
 		if(s=="returnHoneycomb"){	
 			return honeycomb;			
+		}
+
+		if(s=="setObject"){	
+			honeycomb.setObj(p);
+			menu.setObj(p);
+			return;		
 		}
 
 

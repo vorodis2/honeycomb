@@ -1,0 +1,476 @@
+{
+  "hScane": {
+    "startVisi": "{|xVerh|:976.07,|yVerh|:-135.18,|zVerh|:370.12,|rotationX|:0.96,|rotationZ|:-0.27,|zume|:1678.29}",
+    "time": 323,
+    "array": [
+      {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "rotation": 0,
+        "radius": 280,
+        "color": "#2b5993",
+        "height": 50,
+        "startVisi": "{|xVerh|:354.25,|yVerh|:-451.13,|zVerh|:155.01,|rotationX|:0,|rotationZ|:0.52,|zume|:1216.73}",
+        "array": [
+          {
+            "height": 25,
+            "visible": true,
+            "text": "",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.75
+          },
+          {
+            "height": 20,
+            "visible": true,
+            "text": "Bitcoin",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.14
+          },
+          {
+            "height": 14,
+            "visible": true,
+            "text": "Etherium",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.05
+          },
+          {
+            "height": 29,
+            "visible": true,
+            "text": "Tezos",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.09
+          },
+          {
+            "height": 42,
+            "visible": true,
+            "text": "Link",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.12
+          },
+          {
+            "height": 16,
+            "visible": true,
+            "text": "Cosmos",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": -0.01
+          },
+          {
+            "height": 7,
+            "visible": true,
+            "text": "Polkadot",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.04
+          }
+        ],
+        "text": "OPEN FINANCE",
+        "colorText": "#FFFFFF",
+        "fontSize": 16
+      },
+      {
+        "x": 700,
+        "y": 0,
+        "z": 0,
+        "rotation": 0,
+        "radius": 300,
+        "color": "#313A4E",
+        "height": 50,
+        "startVisi": "null",
+        "array": [
+          {
+            "height": 22,
+            "visible": true,
+            "text": "Oracles",
+            "colorText": "#272F44",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.68
+          },
+          {
+            "height": 22,
+            "visible": true,
+            "text": "Decentralized",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.24
+          },
+          {
+            "height": 10,
+            "visible": true,
+            "text": "DAO",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.17
+          },
+          {
+            "height": 4,
+            "visible": false,
+            "text": "",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.08
+          },
+          {
+            "height": 31,
+            "visible": true,
+            "text": "Blockchain",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.24
+          },
+          {
+            "height": 22,
+            "visible": true,
+            "text": "X-Chain",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.1
+          },
+          {
+            "height": 14,
+            "visible": true,
+            "text": "Oracles",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.12
+          }
+        ],
+        "text": "GRAVITY PROTOCOL",
+        "colorText": "#ffffff",
+        "fontSize": 16
+      },
+      {
+        "x": 1400,
+        "y": 0,
+        "z": 0,
+        "rotation": 0,
+        "radius": 300,
+        "color": "#0459f9",
+        "height": 50,
+        "startVisi": "null",
+        "array": [
+          {
+            "height": 22,
+            "visible": true,
+            "text": "WAVES",
+            "colorText": "#0055FF",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.8
+          },
+          {
+            "height": 22,
+            "visible": true,
+            "text": "Waves NG",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.16
+          },
+          {
+            "height": 9,
+            "visible": true,
+            "text": "Smart",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": -0.03
+          },
+          {
+            "height": 22,
+            "visible": true,
+            "text": "SDK",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.09
+          },
+          {
+            "height": 39,
+            "visible": true,
+            "text": "dApps",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.15
+          },
+          {
+            "height": 25,
+            "visible": true,
+            "text": "Ride",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.04
+          },
+          {
+            "height": 15,
+            "visible": true,
+            "text": "LPOS",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": -0.06
+          }
+        ],
+        "text": "WAVES PROTOCOL",
+        "colorText": "#ffffff",
+        "fontSize": 16
+      },
+      {
+        "x": 1050,
+        "y": 0,
+        "z": 650,
+        "rotation": 0,
+        "radius": 300,
+        "color": "#4382FA",
+        "height": 50,
+        "startVisi": "null",
+        "array": [
+          {
+            "height": 4,
+            "visible": false,
+            "text": "",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.22
+          },
+          {
+            "height": 15,
+            "visible": true,
+            "text": "Governance",
+            "colorText": "#1D1D1F",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.66
+          },
+          {
+            "height": 4,
+            "visible": false,
+            "text": "",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": -0.09
+          },
+          {
+            "height": 4,
+            "visible": false,
+            "text": "",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.14
+          },
+          {
+            "height": 15,
+            "visible": true,
+            "text": "Research",
+            "colorText": "#1D1D1F",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.59
+          },
+          {
+            "height": 30,
+            "visible": true,
+            "text": "Technology",
+            "colorText": "#1D1D1F",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.49
+          },
+          {
+            "height": 26,
+            "visible": true,
+            "text": "Tools",
+            "colorText": "#1D1D1F",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.32
+          }
+        ],
+        "text": "WAVES ASSOCIATION",
+        "colorText": "#ffffff",
+        "fontSize": 16
+      },
+      {
+        "x": 1050,
+        "y": 0,
+        "z": -650,
+        "rotation": 0,
+        "radius": 300,
+        "color": "#6138B8",
+        "height": 50,
+        "startVisi": "null",
+        "array": [
+          {
+            "height": 22,
+            "visible": true,
+            "text": "USDN",
+            "colorText": "#5D34B4",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.68
+          },
+          {
+            "height": 22,
+            "visible": true,
+            "text": "Algorythmic",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.11
+          },
+          {
+            "height": 19,
+            "visible": true,
+            "text": "Neutrino",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": -0.02
+          },
+          {
+            "height": 12,
+            "visible": true,
+            "text": "NSBT",
+            "colorText": "#5D34B4",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.68
+          },
+          {
+            "height": 18,
+            "visible": true,
+            "text": "CDP",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.2
+          },
+          {
+            "height": 30,
+            "visible": true,
+            "text": "Staking",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.01
+          },
+          {
+            "height": 15,
+            "visible": true,
+            "text": "Multi-",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.04
+          }
+        ],
+        "text": "NEUTRINO PROTOCOL",
+        "colorText": "#ffffff",
+        "fontSize": 16
+      },
+      {
+        "x": 1750,
+        "y": 0,
+        "z": -650,
+        "rotation": 0,
+        "radius": 300,
+        "color": "#0D9A69",
+        "height": 50,
+        "startVisi": "null",
+        "array": [
+          {
+            "height": 22,
+            "visible": true,
+            "text": "WEST",
+            "colorText": "#077651",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.8
+          },
+          {
+            "height": 22,
+            "visible": true,
+            "text": "Governance",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.09
+          },
+          {
+            "height": 11,
+            "visible": true,
+            "text": "Hybrid",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0
+          },
+          {
+            "height": 4,
+            "visible": false,
+            "text": "",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.07
+          },
+          {
+            "height": 33,
+            "visible": true,
+            "text": "Custom",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.06
+          },
+          {
+            "height": 22,
+            "visible": true,
+            "text": "SDK",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": -0.06
+          },
+          {
+            "height": 12,
+            "visible": true,
+            "text": "Voting",
+            "colorText": "#ffffff",
+            "fontSize": 16,
+            "boolAM": true,
+            "rA": 0.09
+          }
+        ],
+        "text": "WAVES ENTERPRISE",
+        "colorText": "#ffffff",
+        "fontSize": 16
+      }
+    ]
+  }
+}

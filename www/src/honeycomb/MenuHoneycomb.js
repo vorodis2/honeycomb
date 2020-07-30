@@ -134,7 +134,53 @@ export class MStart  {
 	    })
 	    bopent.height=28
 	   	bopent.width=28
-    			
+    		
+
+	   	var b = new DButton(this.w.content, 202, -32, "initConfig.json",function(){
+	        $.ajax({
+                url: "initConfig.json",
+                success: function function_name(data) {                         
+                    var oo;
+                    if(typeof data === "string") {
+                        var conf = JSON.parse(data)
+                        oo = conf;
+                    } else oo = data;
+
+                    self.par.fun("setObject", oo);
+                }
+            })
+	    })
+	    
+	   	var b = new DButton(this.w.content, 302, -32, "initConfig1.json",function(){
+	        $.ajax({
+                url: "initConfig1.json",
+                success: function function_name(data) {                         
+                    var oo;
+                    if(typeof data === "string") {
+                        var conf = JSON.parse(data)
+                        oo = conf;
+                    } else oo = data;
+
+                    self.par.fun("setObject", oo);
+                }
+            })
+	    })
+
+	    var b = new DButton(this.w.content, 302, -32, "initConfig2.json",function(){
+	        $.ajax({
+                url: "initConfig2.json",
+                success: function function_name(data) {                         
+                    var oo;
+                    if(typeof data === "string") {
+                        var conf = JSON.parse(data)
+                        oo = conf;
+                    } else oo = data;
+
+                    self.par.fun("setObject", oo);
+                }
+            })
+	    })
+
 
     	let y=2;
 
