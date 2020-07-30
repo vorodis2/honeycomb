@@ -129,7 +129,7 @@ export class Honeycomb  {
 
         this.over = function (e) {    
             if(e && e.target && e.target.hron && e.target.hron.type=="Comb"){
-                if(e.target.hron.boolAM==true){
+                if(e.target.hron.boolAM==true){                    
                     window.document.body.style.cursor = "pointer"; 
                     e.target.hron.activeOver() 
                 }
@@ -141,7 +141,10 @@ export class Honeycomb  {
 
             if(e && e.target && e.target.hron){                
                 if(e.target.hron.type=="Honey")self.activObject = e.target.hron;
-                if(e.target.hron.type=="Comb")self.activObject = e.target.hron.par;
+                if(e.target.hron.type=="Comb"){
+                    if(e.target.hron.par.active==false)self.activObject = e.target.hron.par;
+                    else self.fun("activObject", e.target.hron) 
+                }
                 return
             }
 

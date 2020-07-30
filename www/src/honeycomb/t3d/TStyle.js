@@ -132,9 +132,9 @@ export class TFBlok  {
 					_lebel.cont3d.add(mesh)
 					this.arrSim[j].push(mesh);
 
-					if(par.ng!=undefined)_lebel.cont3d.children[sah].position.y=-par._whText-(par._whText*j*1.1);
+					if(par.ng!=undefined)_lebel.cont3d.children[sah].position.y=-par._whText-(par._whText*j*1.5);
 					else{
-						_lebel.cont3d.children[sah].position.y=0-(par._whText*j*1.1);
+						_lebel.cont3d.children[sah].position.y=0-(par._whText*j*1.5);
 					}
 					if(i!=0){
 						_lebel.cont3d.children[sah].position.x=_lebel.cont3d.children[sah-1].position.x+_lebel.cont3d.children[sah-1].w+this.par._whText/200;					
