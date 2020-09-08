@@ -470,8 +470,8 @@ export class MComb  {
     constructor(par, idArr) {
     	this.type="MComb";
 		var self=this;
-		this.par=par
-		this.idArr=idArr
+		this.par=par;
+		this.idArr=idArr;
 
 		this.dCont=new DCont(par.dCont);	
 
@@ -544,7 +544,32 @@ export class MComb  {
 	    var check3 = new DCheckBox(this.w.content, 2, y,"visiActiv (not save)",function(){
 	        self.object.visiActiv=this.value;
 	    })
-	    y+=28;	
+	    y+=30;
+
+
+
+	    let l=new DLabel(this.w.content, 2, y,"idRandom")
+		l.width=333
+		l.fontSize=12
+	    y+=16;
+	    var input=new DInput(this.w.content, 2, y,"null",function(){
+	        self.object.idRandom=input.value;
+	    });	
+	    input.width=this.w.width-8;	
+	    y+=40;
+	    l=new DLabel(this.w.content, 2, y,"Массив связей, через запятую")
+		l.width=333;
+		l.fontSize=12;
+		y+=16;
+
+	    var textArea2 = new DTextArea(this.w.content, 2, y,"null",function(){
+	        self.object.idArray=textArea2.value;
+	    })
+    	textArea2.width=this.w.width-6;
+    	textArea2.height=48;
+    	textArea2.timeFun=1;
+    	y+=48;
+
 
     	this.object;
 	    this.setObject=function(object){
@@ -561,6 +586,10 @@ export class MComb  {
 	    	check1.value=self.object.center;
 	    	check2.value=self.object.boolAM;	    	
 	    	check3.value=self.object.visiActiv;
+
+
+	    	input.value=self.object.idRandom;
+	    	textArea2.value=self.object.idArray;
 	    }
 
     	this.w.height=y+34;

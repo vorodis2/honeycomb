@@ -5,7 +5,9 @@ import { SceneSB } from '../libMy/visi3D/SceneSB.js';
 
 
 import { TStyle, TLabel } from './t3d/TStyle.js'; 
+
 import { LineSHC } from './LineSHC.js'; 
+
 export class Honeycomb  {
     constructor(textLink, fun, paramScane) {
     	this.type="Honeycomb";
@@ -123,7 +125,7 @@ export class Honeycomb  {
         this.out = function (e) {    
             if(e && e.target && e.target.hron && e.target.hron.type=="Comb"){
                 window.document.body.style.cursor = "auto";
-                hScane.activIdRend='null'  
+                hScane.activIdRend='null'
             }
         }
 
@@ -132,46 +134,14 @@ export class Honeycomb  {
             if(e && e.target && e.target.hron && e.target.hron.type=="Comb"){
                 if(e.target.hron.boolAM==true){                    
                     window.document.body.style.cursor = "pointer"; 
-                    e.target.hron.activeOver()
-                    hScane.activIdRend=e.target.hron.idRandom; 
+                    e.target.hron.activeOver(); 
+                    //hScane.activIdRend=e.target.hron.idRandom;
                 }
                 
             }
         }
 
         this.down = function (e) { 
-  /*
-            let kolPoint=1/ARC_SEGMENTS;
-            let p
-            let r =222
-          p=[]
-            for (let i = 0; i < ARC_SEGMENTS; i++) { 
-                 p[i] =new THREE.Vector3(Math.random()*r*2-r,Math.random()*r*2-r,Math.random()*r*2-r)         
-                curve.points[i].x= Math.random()*r*2-r;
-                curve.points[i].y= Math.random()*r*2-r;
-                curve.points[i].z= Math.random()*r*2-r;
-                //getPros3d(point,point1);
-            }
-            curve.points=p;
-            geometry.attributes.position.needsUpdate = true;
-
-
-
-            var position = geometry.attributes.position;
-
-            for ( var i = 0; i < ARC_SEGMENTS; i ++ ) {
-
-                var t = i / ( ARC_SEGMENTS - 1 );
-                //spline.getPoint( t, point );
-                position.setXYZ( i, Math.random()*r*2-r,Math.random()*r*2-r,Math.random()*r*2-r );
-
-            }
-
-            position.needsUpdate = true;*/
-
-
-
-
 
             if(e && e.target && e.target.hron){                
                 if(e.target.hron.type=="Honey")self.activObject = e.target.hron;
@@ -205,34 +175,12 @@ export class Honeycomb  {
             return null;
         } 
 
-        ///////////////////////////////////////////////
 
-      /*  const ARC_SEGMENTS=100
-        var curve = new THREE.CatmullRomCurve3( );
 
-        for (let i = 0; i < ARC_SEGMENTS; i++) {      
-            curve.points[i]=new THREE.Vector3(Math.random()*222,Math.random()*222,Math.random()*222);           
-        }
 
-         
-        var geometry = new THREE.BufferGeometry().setFromPoints( curve.points );
-
-        var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
-        trace(">>>",geometry)
-        // Create the final object to add to the scene
-        var curveObject = new THREE.Line( geometry, material );
-
-        content3d.add(curveObject);
-
-        trace(curve.points)*/
-
-        //////////////////////////////////////////
         this.upDate=function(){
             visi3D.upDate();
             TWEEN.update();
-
-
-
         }   
 
 
@@ -257,12 +205,9 @@ export class Honeycomb  {
 
     set activObject(value) {
         if(this._activObject != value){        
-            this._activObject = value;
-            this.fun("activObject", value)
+            this._activObject = value;           
             if(this._activObject)this.hScane.setActiv(this._activObject);
             if(value==undefined)this.hScane.startAnimat(this.hScane.startVisi)
-            trace("this._activObject===",this._activObject)
-            
         }             
     }
     get activObject() { return  this._activObject;}
@@ -283,21 +228,25 @@ export class HScane  {
         this._index=-1;
         this._time=500;
 
-        this._activIdRend="null";
+        this._activIdRend=null;
 
+        
 
         this.content3d = new THREE.Object3D();
         this.geometry = new THREE.CylinderBufferGeometry( 1, 1, 1, 6 );
 
+        this.lineSHC=new LineSHC(this);
+
+
         var arrayHoney=[];
-        this.arrayHoney=arrayHoney
+        this.arrayHoney=arrayHoney;
 
         
 
         this.sob=function(s,p){
-            self.par.render()
+
         }
-        this.lineSHC=new LineSHC(this,this.sob);
+
 
 
         this.creatH=function(){
@@ -413,38 +362,39 @@ export class HScane  {
                 if(this.arrayHoney[i].life==false)continue;
                 for (var j = 0; j < this.arrayHoney[i].array.length; j++) {
                     if(value==this.arrayHoney[i].array[j].idRandom){
-                        return this.arrayHoney[i].array[j];                       
+                        return this.arrayHoney[i].array[j];
+                       
                     }
                 }
             }
             return null
         }
 
+
     }
 
     set activIdRend(value) {
         if(this._activIdRend != value){        
-            this._activIdRend = value;
+            this._activIdRend = value;  
+            let c=this.getCombForId(value);
+            if(c!=null) c.activeOver()                     
             this.lineSHC.setComb(this.getCombForId(value));
         }             
     }
     get activIdRend() { return  this._activIdRend;}
 
 
-
-
     set startVisi(value) {
         if(this._startVisi != value){        
             this._startVisi = value;
-            this.startAnimat(value)          
+            this.startAnimat(value);          
         }             
     }
     get startVisi() { return  this._startVisi;}
 
     set index(value) {
         if(this._index != value){        
-            this._index = value; 
-                      
+            this._index = value;           
             for (var i = 0; i < this.arrayHoney.length; i++) {                
                 if(i==this._index)this.arrayHoney[i].active=true;
                 else this.arrayHoney[i].active=false;
@@ -557,7 +507,8 @@ export class Honey  {
 
                     this.getVector(dist,angel,vect2);
                     this.c3d.position.x=vect2.x
-                    this.c3d.position.z=vect2.y                    
+                    this.c3d.position.z=vect2.y
+                    trace(this.idArr,this.par.actObj.idArr, angel,dist,vect2)
                 }
             }
 
@@ -629,7 +580,7 @@ export class Honey  {
         this.redragActive=function(){
             this.tween.stop();
             
-            if(this._active==true){ 
+            if(this._active == true){ 
                 this.tween.to({progresActive:1}, this.par.time).start();  
                 this.par.startAnimat(this._startVisi)                
             }else{
@@ -977,8 +928,8 @@ export class Comb  {
         })
         this.activeOver=function(){            
             if(this._boolAM==false) return;
-           /* this.content3d.scale.y=1.1;            
-            this.tween.to({y:1}, this.par.par.time).start();*/            
+            this.content3d.scale.y=1.1;            
+            this.tween.to({y:1}, this.par.par.time).start();            
         }
 
 
@@ -992,7 +943,6 @@ export class Comb  {
             o.boolAM=this.boolAM;
             o.rA=Math.round(this.rA*100)/100;
             o.idRandom=this.idRandom;
-            o.idArray=this._idArray
             return o;
         }
 
@@ -1015,9 +965,7 @@ export class Comb  {
             if(o.rA==undefined)o.rA=this.rA;
             this.rA=o.rA;
 
-            if(o.idRandom!=undefined) this.idRandom = o.idRandom;  
-            if(o.idArray!=undefined) this._idArray = o.idArray;        
-                 
+            if(o.idRandom!=undefined)this.idRandom=o.idRandom;            
 
             this.draw();    
             this.render();   
@@ -1158,7 +1106,7 @@ export class Comb  {
     set visiActiv(value) {
         if(this._visiActiv != value){        
             this._visiActiv = value;
-                    
+            trace(this.idRandom+"!!!!!!!!!!!!!"+value)            
             this.meshActiv.visible=this._visiActiv;       
             this.render();
         }             
@@ -1171,7 +1119,13 @@ export class Comb  {
             this.render();
         }             
     }
-    get idArray() { return  this._idArray;}  
+    get idArray() { return  this._idArray;} 
+
+    
+
+
 }
+
+
 
 

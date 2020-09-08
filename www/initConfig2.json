@@ -20,7 +20,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.75
+            "rA": 0.75,
+            "idRandom": "765713",
+            "idArray": ""
           },
           {
             "height": 20,
@@ -29,7 +31,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.14
+            "rA": 0.14,
+            "idRandom": "661263",
+            "idArray": ""
           },
           {
             "height": 14,
@@ -38,7 +42,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.05
+            "rA": 0.05,
+            "idRandom": "295173",
+            "idArray": ""
           },
           {
             "height": 29,
@@ -47,7 +53,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.09
+            "rA": 0.09,
+            "idRandom": "619852",
+            "idArray": ""
           },
           {
             "height": 42,
@@ -56,7 +64,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.12
+            "rA": 0.12,
+            "idRandom": "878018",
+            "idArray": ""
           },
           {
             "height": 16,
@@ -65,7 +75,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": -0.01
+            "rA": -0.01,
+            "idRandom": "375060",
+            "idArray": ""
           },
           {
             "height": 7,
@@ -74,7 +86,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.04
+            "rA": 0.04,
+            "idRandom": "582412",
+            "idArray": ""
           }
         ],
         "text": "OPEN FINANCE",
@@ -98,7 +112,9 @@
             "colorText": "#272F44",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.68
+            "rA": 0.68,
+            "idRandom": "117067",
+            "idArray": ""
           },
           {
             "height": 22,
@@ -107,7 +123,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.24
+            "rA": 0.24,
+            "idRandom": "260397",
+            "idArray": ""
           },
           {
             "height": 10,
@@ -116,7 +134,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.17
+            "rA": 0.17,
+            "idRandom": "341799",
+            "idArray": "744191,91087,27355"
           },
           {
             "height": 4,
@@ -125,7 +145,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.08
+            "rA": 0.08,
+            "idRandom": "502289",
+            "idArray": ""
           },
           {
             "height": 31,
@@ -134,7 +156,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.24
+            "rA": 0.24,
+            "idRandom": "304581",
+            "idArray": ""
           },
           {
             "height": 22,
@@ -143,7 +167,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.1
+            "rA": 0.1,
+            "idRandom": "127592",
+            "idArray": ""
           },
           {
             "height": 14,
@@ -152,7 +178,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.12
+            "rA": 0.12,
+            "idRandom": "744191",
+            "idArray": ""
           }
         ],
         "text": "GRAVITY PROTOCOL",
@@ -176,7 +204,9 @@
             "colorText": "#0055FF",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.8
+            "rA": 0.8,
+            "idRandom": "748786",
+            "idArray": ""
           },
           {
             "height": 22,
@@ -185,7 +215,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.16
+            "rA": 0.16,
+            "idRandom": "91087",
+            "idArray": ""
           },
           {
             "height": 9,
@@ -194,7 +226,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": -0.03
+            "rA": -0.03,
+            "idRandom": "683554",
+            "idArray": ""
           },
           {
             "height": 22,
@@ -203,7 +237,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.09
+            "rA": 0.09,
+            "idRandom": "574375",
+            "idArray": ""
           },
           {
             "height": 39,
@@ -212,7 +248,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.15
+            "rA": 0.15,
+            "idRandom": "791838",
+            "idArray": ""
           },
           {
             "height": 25,
@@ -221,7 +259,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.04
+            "rA": 0.04,
+            "idRandom": "394583",
+            "idArray": ""
           },
           {
             "height": 15,
@@ -230,7 +270,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": -0.06
+            "rA": -0.06,
+            "idRandom": "326425",
+            "idArray": ""
           }
         ],
         "text": "WAVES PROTOCOL",
@@ -254,7 +296,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.22
+            "rA": 0.22,
+            "idRandom": "106442",
+            "idArray": ""
           },
           {
             "height": 15,
@@ -263,7 +307,9 @@
             "colorText": "#1D1D1F",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.66
+            "rA": 0.66,
+            "idRandom": "989176",
+            "idArray": ""
           },
           {
             "height": 4,
@@ -272,7 +318,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": -0.09
+            "rA": -0.09,
+            "idRandom": "753948",
+            "idArray": ""
           },
           {
             "height": 4,
@@ -281,7 +329,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.14
+            "rA": 0.14,
+            "idRandom": "516022",
+            "idArray": ""
           },
           {
             "height": 15,
@@ -290,7 +340,9 @@
             "colorText": "#1D1D1F",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.59
+            "rA": 0.59,
+            "idRandom": "908368",
+            "idArray": "341799"
           },
           {
             "height": 30,
@@ -299,7 +351,9 @@
             "colorText": "#1D1D1F",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.49
+            "rA": 0.49,
+            "idRandom": "366788",
+            "idArray": ""
           },
           {
             "height": 26,
@@ -308,7 +362,9 @@
             "colorText": "#1D1D1F",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.32
+            "rA": 0.32,
+            "idRandom": "201110",
+            "idArray": ""
           }
         ],
         "text": "WAVES ASSOCIATION",
@@ -332,7 +388,9 @@
             "colorText": "#5D34B4",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.68
+            "rA": 0.68,
+            "idRandom": "508210",
+            "idArray": ""
           },
           {
             "height": 22,
@@ -341,7 +399,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.11
+            "rA": 0.11,
+            "idRandom": "906708",
+            "idArray": ""
           },
           {
             "height": 19,
@@ -350,7 +410,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": -0.02
+            "rA": -0.02,
+            "idRandom": "129847",
+            "idArray": ""
           },
           {
             "height": 12,
@@ -359,7 +421,9 @@
             "colorText": "#5D34B4",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.68
+            "rA": 0.68,
+            "idRandom": "410285",
+            "idArray": ""
           },
           {
             "height": 18,
@@ -368,7 +432,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.2
+            "rA": 0.2,
+            "idRandom": "530620",
+            "idArray": ""
           },
           {
             "height": 30,
@@ -377,7 +443,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.01
+            "rA": 0.01,
+            "idRandom": "27355",
+            "idArray": ""
           },
           {
             "height": 15,
@@ -386,7 +454,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.04
+            "rA": 0.04,
+            "idRandom": "443791",
+            "idArray": ""
           }
         ],
         "text": "NEUTRINO PROTOCOL",
@@ -410,7 +480,9 @@
             "colorText": "#077651",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.8
+            "rA": 0.8,
+            "idRandom": "745353",
+            "idArray": ""
           },
           {
             "height": 22,
@@ -419,7 +491,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.09
+            "rA": 0.09,
+            "idRandom": "724424",
+            "idArray": ""
           },
           {
             "height": 11,
@@ -428,7 +502,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0
+            "rA": 0,
+            "idRandom": "943706",
+            "idArray": "908368"
           },
           {
             "height": 4,
@@ -437,7 +513,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.07
+            "rA": 0.07,
+            "idRandom": "598545",
+            "idArray": ""
           },
           {
             "height": 33,
@@ -446,7 +524,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.06
+            "rA": 0.06,
+            "idRandom": "827644",
+            "idArray": ""
           },
           {
             "height": 22,
@@ -455,7 +535,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": -0.06
+            "rA": -0.06,
+            "idRandom": "764507",
+            "idArray": ""
           },
           {
             "height": 12,
@@ -464,7 +546,9 @@
             "colorText": "#ffffff",
             "fontSize": 16,
             "boolAM": true,
-            "rA": 0.09
+            "rA": 0.09,
+            "idRandom": "766192",
+            "idArray": ""
           }
         ],
         "text": "WAVES ENTERPRISE",
